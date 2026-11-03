@@ -1,0 +1,4 @@
+extends: base.yaml
+experiment: baselines
+methods: [minas, knnens, sencforest]
+svm_reduced: false
