@@ -1,6 +1,8 @@
 """Dynamic EVL stream CSVs under ``data/osr_dynamic/``.
 
-Each file is CSV with feature columns and a ``RESULTADO`` class label (1..C).
+Each file is CSV with feature columns and a ``CLASS`` label (1..C).
+A header line (``F1,F2,...,CLASS``) is optional; files without it are read
+from their first line, so no sample is lost.
 Known classes are inferred from the filename prefix (``2C`` → classes 1–2,
 ``4*`` → 1–4, ``5*`` → 1–5). Splits follow ``partitions._split_indices`` with
 seed 123, same as LETTER/PENDIGITS.
@@ -24,11 +26,22 @@ def synthetic_root() -> Path:
     return DATA_DYNAMIC_STREAMS
 
 
+def _has_header(path: Path) -> bool:
+    """True when the first line holds column names rather than numbers."""
+    with open(path, encoding="utf-8") as fh:
+        first = fh.readline().strip().split(",")
+    try:
+        [float(v) for v in first]
+    except ValueError:
+        return True
+    return False
+
+
 def load_synthetic(name: str) -> tuple[np.ndarray, np.ndarray, list[str]]:
     path = synthetic_root() / name
     if not path.is_file():
         raise FileNotFoundError(path)
-    df = pd.read_csv(path)
+    df = pd.read_csv(path, header=0 if _has_header(path) else None)
     y = df.iloc[:, -1].astype(float).astype(int).astype(str)
     x = df.iloc[:, :-1].astype(float).values
     known = infer_known_classes(path.stem, y)

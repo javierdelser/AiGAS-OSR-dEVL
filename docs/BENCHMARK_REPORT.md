@@ -1,6 +1,6 @@
-# Benchmark report — stream tables (MINAS, KNNENS, SENCForest)
+# Benchmark report: stream tables (MINAS, KNNENS, SENCForest)
 
-Final **table** metrics bundled in this release. Figures and static AiGAS-dEVL-OSR rescoring are out of scope here.
+Micro-F1 and prequential F1 from the experiments in the paper. Static AiGAS rescoring uses separate Phase-1 artifacts (see `launch.sh aigas-static`).
 
 **EVL protocol:** [arXiv:2504.05761](https://arxiv.org/abs/2504.05761) (Table I: `T_s`, batches, datasets). Implementation: `src/osr_static/stream_benchmark.py`, `stream_eval.py`, `synthetic_metrics.py`.
 
@@ -8,7 +8,7 @@ Final **table** metrics bundled in this release. Figures and static AiGAS-dEVL-O
 
 ## 1. Methods
 
-| Method | Release module |
+| Method | Module |
 |--------|----------------|
 | **MINAS** | `baselines/minas.py` |
 | **KNNENS** | `baselines/knnens.py` |
@@ -16,7 +16,7 @@ Final **table** metrics bundled in this release. Figures and static AiGAS-dEVL-O
 
 ---
 
-## 2. Letter / Pendigits — static OSR partitions
+## 2. Letter / Pendigits (static OSR partitions)
 
 Micro-F1 (%). Partition logs: `data/osr_static/*.log`.
 
@@ -33,7 +33,7 @@ Micro-F1 (%). Partition logs: `data/osr_static/*.log`.
 
 ---
 
-## 3. Fourteen EVL streams — Table I prequential protocol
+## 3. Sixteen EVL streams (Table I prequential protocol)
 
 **Data:** `data/osr_dynamic/*.txt`
 
@@ -51,12 +51,14 @@ Micro-F1 (%). Partition logs: `data/osr_static/*.log`.
 | 4CRE-V2_NO_OSR | 1120 | 6.31 | 88.79 | 31.86 | 75.74 | 33.28 | 73.46 |
 | 4CR_NO_OSR | 6176 | 9.87 | 88.41 | 32.66 | 75.05 | 24.40 | 80.29 |
 | 5CVT_MOD_OSR | 1000 | 15.90 | 67.94 | 47.36 | 51.29 | 41.54 | 54.87 |
+| FG_2C_2D | 5000 | 54.65 | 62.40 | 83.00 | 29.06 | 86.36 | 24.00 |
 | GEARS_2C_2D_SI_OSR | 855 | 40.00 | 71.40 | 96.52 | 6.41 | 93.94 | 10.89 |
+| MG_2C_2D | 5000 | 22.62 | 87.25 | 63.48 | 53.51 | 51.01 | 65.77 |
 | UG_2C_2D_SI_OSR | 2100 | 17.10 | 86.25 | 58.25 | 56.05 | 51.15 | 62.45 |
 | UG_2C_3D_SI_OSR | 1050 | 8.64 | 90.91 | 42.78 | 69.31 | 26.41 | 80.73 |
 | UG_2C_5D_SI_OSR | 1890 | 4.58 | 88.18 | 81.51 | 28.19 | 52.27 | 58.35 |
 
-FG2C2D / MG2C2D appear in Table I but are not in the shipped CSV set.
+FG_2C_2D and MG_2C_2D contain no new class (200,000 samples, 200 batches, T_s = 5,000 in Table I).
 
 ---
 
