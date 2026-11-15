@@ -6,7 +6,7 @@
   </a>
 </p>
 
-Companion software for the paper: MINAS, KNNENS, and SENCForest baselines on LETTER and PENDIGITS, and on sixteen EVL prequential streams (`data/osr_dynamic/*.txt`, label column `CLASS`).
+Companion software for the paper: reproduce MINAS, KNNENS, and SENCForest on LETTER/PENDIGITS and on 16 Table-I EVL streams (`data/osr_dynamic/*.txt`, label column `CLASS`), and run AiGAS-OSR-dEVL (static rescoring and NeuPy stream driver).
 
 Committed outputs under `results/` are markdown tables. Benchmark drivers write temporary checkpoints outside `results/` unless you redirect them.
 
