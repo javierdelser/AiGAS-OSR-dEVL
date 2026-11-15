@@ -23,6 +23,8 @@ TABLE_I: dict[str, tuple[int, int]] = {
     "UG_2C_3D_SI_OSR": (2000, 200),
     "UG_2C_5D_SI_OSR": (2000, 500),
     "4CE1CF_NO_OSR": (4330, 200),
+    "FG_2C_2D": (5000, 200),
+    "MG_2C_2D": (5000, 200),
 }
 
 

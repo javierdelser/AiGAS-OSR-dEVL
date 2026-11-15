@@ -1,9 +1,11 @@
 #!/usr/bin/env bash
-# Stream benchmarks — one script per protocol (static / dynamic).
+# Entry points: setup, static/dynamic baselines, aigas-static, aigas-dynamic.
 #
 #   bash launch.sh setup
 #   bash launch.sh static --cpus 8
 #   bash launch.sh dynamic
+#   bash launch.sh aigas-static   # needs AIGAS_PHASE1_DIR
+#   bash launch.sh aigas-dynamic  # needs NeuPy (garage/ or AIGAS_PYTHON)
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "$0")" && pwd)"
@@ -65,6 +67,14 @@ case "$CMD" in
   # legacy aliases
   stream) setup_all; "$PY" "$ROOT/scripts/osr_static/run_benchmark.py" --cpus "$CPUS" ;;
   stream-synthetic) setup_all; "$PY" "$ROOT/scripts/osr_dynamic/run_benchmark.py" ;;
+  aigas-static)
+    setup_all
+    "$PY" "$ROOT/scripts/osr_static/run_aigas_benchmark.py"
+    ;;
+  aigas-dynamic)
+    setup_all
+    "$PY" "$ROOT/scripts/osr_dynamic/run_aigas_benchmark.py"
+    ;;
   *)
     echo "Unknown command: $CMD" >&2
     usage >&2

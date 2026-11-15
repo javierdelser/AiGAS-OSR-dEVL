@@ -1,10 +1,9 @@
-"""Repository layout (paper §5: static vs dynamic protocols)."""
+"""Data, script, and results paths."""
 
 from __future__ import annotations
 
 from pathlib import Path
 
-# Release/src/osr_static/paths.py → repo root is two levels above package root.
 REPO_ROOT = Path(__file__).resolve().parents[2]
 
 DATA_STATIC = REPO_ROOT / "data" / "osr_static"
@@ -22,7 +21,7 @@ SRC_DIR = REPO_ROOT / "src"
 
 
 def benchmark_work_root() -> Path:
-    """Scratch dir for JSON checkpoints during a benchmark run (not shipped in ``results/``)."""
+    """Writable directory for per-job JSON during benchmark runs."""
     import os
 
     override = os.environ.get("OSR_BENCHMARK_WORK")

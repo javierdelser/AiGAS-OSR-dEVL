@@ -1,9 +1,5 @@
 #!/usr/bin/env python3
-"""Static OSR stream benchmark (LETTER / PENDIGITS) → ``results/osr_static/STREAM_BASELINES.md``.
-
-Runs MINAS, KNNENS, and SENCForest on the shared partitions, aggregates micro-F1,
-and writes a single markdown table. Job JSON is kept in a temporary work directory only.
-"""
+"""Static OSR benchmarks (LETTER / PENDIGITS) → ``results/osr_static/STREAM_BASELINES.md``."""
 
 from __future__ import annotations
 
